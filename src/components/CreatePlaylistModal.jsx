@@ -6,7 +6,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
     play_description: '',
     play_url: '',
     play_thumbnail: '',
-    play_genre: 'music'
+    play_genre: 'others'
   });
 
   const genres = ['music', 'movie', 'education', 'others'];
