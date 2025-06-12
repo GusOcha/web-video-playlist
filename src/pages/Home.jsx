@@ -37,10 +37,10 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
               <button
                 onClick={() => setSelectedGenre('all')}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${selectedGenre === 'all'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                    : darkMode
-                      ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
-                      : 'bg-white/50 text-gray-700 hover:bg-gray-100/50'
+                  ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  : darkMode
+                    ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
+                    : 'bg-white/50 text-gray-700 hover:bg-gray-100/50'
                   }`}
               >
                 All
@@ -50,10 +50,10 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
                   key={genre}
                   onClick={() => setSelectedGenre(genre)}
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-all capitalize ${selectedGenre === genre
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                      : darkMode
-                        ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
-                        : 'bg-white/50 text-gray-700 hover:bg-gray-100/50'
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                    : darkMode
+                      ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
+                      : 'bg-white/50 text-gray-700 hover:bg-gray-100/50'
                     }`}
                 >
                   {genre}
