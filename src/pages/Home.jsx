@@ -3,7 +3,7 @@ import PlaylistCard from '../components/PlaylistCard';
 
 const Home = ({ playlists, darkMode, loading, error, handleEditPlaylist, handleDeletePlaylist }) => {
   return (
-    <div className="p-4 sm:p-6 md:p-8 max-w-6xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 max-w-6xl mx-auto pt-8 md:pt-30">
       {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
       {loading && <div className="text-center text-gray-400">Loading...</div>}
       {!loading && playlists.length === 0 && <div className="text-center text-gray-500">No playlists found.</div>}
