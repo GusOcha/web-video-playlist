@@ -9,7 +9,7 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
 
   const filteredPlaylists = playlists.filter(playlist => {
     const matchesSearch = playlist.play_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         playlist.play_description.toLowerCase().includes(searchQuery.toLowerCase());
+      playlist.play_description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesGenre = selectedGenre === 'all' || playlist.play_genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });
@@ -36,13 +36,12 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedGenre('all')}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${
-                  selectedGenre === 'all' 
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' 
-                    : darkMode 
-                      ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50' 
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${selectedGenre === 'all'
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                    : darkMode
+                      ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
                       : 'bg-white/50 text-gray-700 hover:bg-gray-100/50'
-                }`}
+                  }`}
               >
                 All
               </button>
@@ -50,20 +49,19 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
                 <button
                   key={genre}
                   onClick={() => setSelectedGenre(genre)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all capitalize ${
-                    selectedGenre === genre 
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' 
-                      : darkMode 
-                        ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50' 
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all capitalize ${selectedGenre === genre
+                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                      : darkMode
+                        ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
                         : 'bg-white/50 text-gray-700 hover:bg-gray-100/50'
-                  }`}
+                    }`}
                 >
                   {genre}
                 </button>
               ))}
             </div>
           </div>
-          
+
           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             {filteredPlaylists.length} playlist{filteredPlaylists.length !== 1 ? 's' : ''}
           </span>
@@ -73,9 +71,9 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
         {filteredPlaylists.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPlaylists.map(playlist => (
-              <PlaylistCard 
-                key={playlist.id} 
-                playlist={playlist} 
+              <PlaylistCard
+                key={playlist.id}
+                playlist={playlist}
                 darkMode={darkMode}
                 handleDeletePlaylist={handleDeletePlaylist}
               />
