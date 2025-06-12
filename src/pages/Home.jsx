@@ -8,8 +8,11 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
   const genres = ['music', 'movie', 'education', 'others'];
 
   const filteredPlaylists = playlists.filter(playlist => {
-    const matchesSearch = playlist.play_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      playlist.play_description.toLowerCase().includes(searchQuery.toLowerCase());
+    const title = playlist.play_title || playlist.play_name || '';
+    const description = playlist.play_description || '';
+    const matchesSearch =
+      title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesGenre = selectedGenre === 'all' || playlist.play_genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });

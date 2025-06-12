@@ -12,22 +12,22 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
   const genres = ['music', 'movie', 'education', 'others'];
 
   const handleSubmit = async () => {
-  if (formData.play_title && formData.play_description && formData.play_url && formData.play_thumbnail) {
-    try {
-      await handleCreatePlaylist(formData);
-      setFormData({
-        play_title: '',
-        play_description: '',
-        play_url: '',
-        play_thumbnail: '',
-        play_genre: 'music'
-      });
-    } catch (error) {
-      console.error('Error creating playlist:', error);
-      // You might want to show an error message to the user here
+    if (formData.play_title && formData.play_description && formData.play_url && formData.play_thumbnail) {
+      try {
+        await handleCreatePlaylist(formData);
+        setFormData({
+          play_title: '',
+          play_description: '',
+          play_url: '',
+          play_thumbnail: '',
+          play_genre: 'music'
+        });
+      } catch (error) {
+        console.error('Error creating playlist:', error);
+        // You might want to show an error message to the user here
+      }
     }
-  }
-};
+  };
 
   if (!showModal) return null;
 
@@ -37,7 +37,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
         <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-6`}>
           Create New Playlist
         </h2>
-        
+
         <div className="space-y-4">
           <div>
             <label className={`block text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-2`}>
@@ -47,7 +47,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
               type="text"
               required
               value={formData.play_title}
-              onChange={(e) => setFormData({...formData, play_title: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, play_title: e.target.value })}
               className={`w-full px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-700/50 text-white border-gray-600' : 'bg-white/50 text-gray-900 border-gray-300'} border backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500`}
             />
           </div>
@@ -59,7 +59,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
             <textarea
               required
               value={formData.play_description}
-              onChange={(e) => setFormData({...formData, play_description: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, play_description: e.target.value })}
               className={`w-full px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-700/50 text-white border-gray-600' : 'bg-white/50 text-gray-900 border-gray-300'} border backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500 h-20 resize-none`}
             />
           </div>
@@ -72,7 +72,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
               type="url"
               required
               value={formData.play_url}
-              onChange={(e) => setFormData({...formData, play_url: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, play_url: e.target.value })}
               className={`w-full px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-700/50 text-white border-gray-600' : 'bg-white/50 text-gray-900 border-gray-300'} border backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500`}
             />
           </div>
@@ -85,7 +85,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
               type="url"
               required
               value={formData.play_thumbnail}
-              onChange={(e) => setFormData({...formData, play_thumbnail: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, play_thumbnail: e.target.value })}
               className={`w-full px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-700/50 text-white border-gray-600' : 'bg-white/50 text-gray-900 border-gray-300'} border backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500`}
             />
           </div>
@@ -96,7 +96,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
             </label>
             <select
               value={formData.play_genre}
-              onChange={(e) => setFormData({...formData, play_genre: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, play_genre: e.target.value })}
               className={`w-full px-3 py-2 rounded-lg ${darkMode ? 'bg-gray-700/50 text-white border-gray-600' : 'bg-white/50 text-gray-900 border-gray-300'} border backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500`}
             >
               {genres.map(genre => (
