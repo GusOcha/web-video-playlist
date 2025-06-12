@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Home from './pages/Home';
 import CreatePlaylistModal from './components/CreatePlaylistModal';
-// import EditPlaylistModal from './components/EditPlaylistModal';
+import EditPlaylistModal from './components/EditPlaylistModal';
+import DeletePlaylistModal from './components/DeletePlaylistModal';
 
-// Dummy getData function for demonstration. Replace with your actual API utility if needed.
 const getData = async (url) => {
   const API_BASE_URL = 'https://webfmsi.singapoly.com';
   const response = await fetch(API_BASE_URL + url);
@@ -20,7 +20,9 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingPlaylist, setEditingPlaylist] = useState(null);
+  const [deletingPlaylist, setDeletingPlaylist] = useState(null);
   const [error, setError] = useState('');
 
   // Fetch playlists from API
@@ -49,6 +51,7 @@ const App = () => {
     getPlaylists();
   }, []);
 
+  // CREATE
   const handleCreatePlaylist = async (newPlaylist) => {
     setLoading(true);
     setError('');
@@ -77,6 +80,12 @@ const App = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // EDIT
+  const handleEditPlaylist = (playlist) => {
+    setEditingPlaylist(playlist);
+    setShowEditModal(true);
   };
 
   const handleUpdatePlaylist = async (updatedPlaylist) => {
@@ -110,11 +119,8 @@ const App = () => {
     }
   };
 
+  // DELETE
   const handleDeletePlaylist = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this playlist?')) {
-      return;
-    }
-
     setLoading(true);
     setError('');
     try {
@@ -127,6 +133,8 @@ const App = () => {
       }
 
       await getPlaylists();
+      setShowDeleteModal(false);
+      setDeletingPlaylist(null);
     } catch (err) {
       setError('Failed to delete playlist');
       console.error('Error deleting playlist:', err);
@@ -135,9 +143,9 @@ const App = () => {
     }
   };
 
-  const handleEditPlaylist = (playlist) => {
-    setEditingPlaylist(playlist);
-    setShowEditModal(true);
+  const openDeleteModal = (playlist) => {
+    setDeletingPlaylist(playlist);
+    setShowDeleteModal(true);
   };
 
   const toggleDarkMode = () => {
@@ -157,7 +165,7 @@ const App = () => {
       <Home
         darkMode={darkMode}
         playlists={playlists}
-        handleDeletePlaylist={handleDeletePlaylist}
+        handleDeletePlaylist={openDeleteModal}
         handleEditPlaylist={handleEditPlaylist}
         loading={loading}
         error={error}
@@ -173,9 +181,8 @@ const App = () => {
           loading={loading}
         />
       )}
-
-      {/* Uncomment and implement EditPlaylistModal if needed */}
-      {/* {showEditModal && editingPlaylist && (
+      {/* 
+      {showEditModal && editingPlaylist && (
         <EditPlaylistModal
           showModal={showEditModal}
           setShowModal={setShowEditModal}
@@ -187,6 +194,17 @@ const App = () => {
             setShowEditModal(false);
             setEditingPlaylist(null);
           }}
+        />
+      )} */}
+      {/* 
+      {showDeleteModal && deletingPlaylist && (
+        <DeletePlaylistModal
+          showModal={showDeleteModal}
+          setShowModal={setShowDeleteModal}
+          handleDeletePlaylist={() => handleDeletePlaylist(deletingPlaylist.id)}
+          playlist={deletingPlaylist}
+          loading={loading}
+          darkMode={darkMode}
         />
       )} */}
     </div>

@@ -4,6 +4,16 @@ import { MoreVertical, Edit, Trash2, Play } from 'lucide-react';
 const PlaylistCard = ({ playlist, darkMode, onEdit, onDelete, loading }) => {
   const [showMenu, setShowMenu] = useState(false);
 
+  const handleEditPlaylist = (playlist) => {
+    onEdit(playlist);
+    setShowMenu(false);
+  };
+
+  const handleDeletePlaylist = (playlist) => {
+    onDelete(playlist.id);
+    setShowMenu(false);
+  };
+
   return (
     <div className={`relative group w-full ${darkMode ? 'bg-gray-800/30' : 'bg-white/30'} backdrop-blur-md rounded-xl border ${darkMode ? 'border-gray-700/50' : 'border-gray-200/50'} overflow-hidden hover:scale-105 transition-all duration-300`}>
       {/* Thumbnail */}
@@ -41,14 +51,14 @@ const PlaylistCard = ({ playlist, darkMode, onEdit, onDelete, loading }) => {
           {showMenu && (
             <div className={`absolute top-full right-0 mt-1 w-32 ${darkMode ? 'bg-gray-800/90' : 'bg-white/90'} backdrop-blur-md rounded-lg shadow-lg border ${darkMode ? 'border-gray-700/50' : 'border-gray-200/50'} py-2 z-10`}>
               <button
-                onClick={() => { onEdit(playlist); setShowMenu(false); }}
+                onClick={() => handleEditPlaylist(playlist)}
                 className={`block w-full text-left px-4 py-2 text-sm ${darkMode ? 'text-white hover:bg-gray-700/50' : 'text-gray-900 hover:bg-gray-100/50'} transition-colors flex items-center`}
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
               </button>
               <button
-                onClick={() => { onDelete(playlist.id); setShowMenu(false); }}
+                onClick={() => handleDeletePlaylist(playlist)}
                 disabled={loading}
                 className={`block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 transition-colors flex items-center disabled:opacity-50`}
               >

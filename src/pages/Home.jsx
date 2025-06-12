@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import PlaylistCard from '../components/PlaylistCard';
 
-const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
+const Home = ({ darkMode, playlists, DeletePlaylistModal, EditPlaylistModal }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('all');
   const genres = ['music', 'movie', 'education', 'others'];
@@ -78,7 +78,9 @@ const Home = ({ darkMode, playlists, handleDeletePlaylist }) => {
                 key={playlist.id}
                 playlist={playlist}
                 darkMode={darkMode}
-                handleDeletePlaylist={handleDeletePlaylist}
+                handleDeletePlaylist={openDeleteModal => DeletePlaylistModal(openDeleteModal, playlist)}
+                handleEditPlaylist={handleEditPlaylist => EditPlaylistModal(handleEditPlaylist, playlist)}
+                onDelete={id => DeletePlaylistModal(id)}
               />
             ))}
           </div>
