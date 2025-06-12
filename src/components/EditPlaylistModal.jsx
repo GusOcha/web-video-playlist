@@ -20,7 +20,7 @@ const EditPlaylistModal = ({
     const [submitting, setSubmitting] = useState(false);
 
     const genres = ['music', 'movie', 'education', 'others'];
-
+    //Initializing form data with playlist values if available
     useEffect(() => {
         if (playlist) {
             setFormData({
@@ -32,16 +32,16 @@ const EditPlaylistModal = ({
             });
         }
     }, [playlist]);
-
+    // Function to handle input changes
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
+    // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitting(true);
         setError && setError('');
-
+        // Validate form data
         const playlistId = playlist?.id || playlist?.id_play;
         if (!playlistId) {
             console.error('No valid ID found in playlist object:', playlist);
@@ -49,7 +49,7 @@ const EditPlaylistModal = ({
             setSubmitting(false);
             return;
         }
-
+        // If any required field is empty, set error and return
         try {
             const form = new FormData();
             form.append('play_name', formData.play_title);
@@ -57,18 +57,19 @@ const EditPlaylistModal = ({
             form.append('play_thumbnail', formData.play_thumbnail);
             form.append('play_genre', formData.play_genre);
             form.append('play_description', formData.play_description);
-
+            // Send the update request to the API
             const response = await fetch(
+                //The Update Request to Api
                 `https://webfmsi.singapoly.com/api/playlist/update/${playlistId}`,
                 {
                     method: 'POST',
                     body: form
                 }
             );
-
+            // If the response is not ok, throw an error
             const data = await response.json();
             if (!response.ok) throw new Error(`Update failed: ${JSON.stringify(data)}`);
-
+            // If successful, reset form and close modal
             getPlaylists && getPlaylists();
             onClose ? onClose() : setShowModal(false);
         } catch (err) {

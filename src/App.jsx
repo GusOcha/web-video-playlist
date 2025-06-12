@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import CreatePlaylistModal from './components/CreatePlaylistModal';
 import EditPlaylistModal from './components/EditPlaylistModal';
 import DeletePlaylistModal from './components/DeletePlaylistModal';
-
+//The API base URL and group ID
 const API_BASE_URL = 'https://webfmsi.singapoly.com';
 const GROUP_ID = 33;
 
@@ -19,24 +19,28 @@ const App = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingPlaylist, setEditingPlaylist] = useState(null);
   const [deletingPlaylist, setDeletingPlaylist] = useState(null);
-
+  // Function to fetch playlists from the API
   const getPlaylists = async () => {
     setLoading(true);
     try {
+      // Fetch playlists from the API
       const response = await fetch(`${API_BASE_URL}/api/playlist/${GROUP_ID}`);
       const data = await response.json();
+      // Check if the response is ok
       setPlaylists(data?.datas || []);
+      // If the response is not ok, throw an error
     } catch (err) {
       setError('Failed to fetch playlists');
     } finally {
       setLoading(false);
     }
   };
-
+  // Fetch playlists when the component mounts
   useEffect(() => {
     getPlaylists();
   }, []);
 
+  // Function to handle creating a new playlist
   const handleCreatePlaylist = async (newPlaylist) => {
     setLoading(true);
     try {
@@ -46,12 +50,12 @@ const App = () => {
       formData.append('play_thumbnail', newPlaylist.play_thumbnail);
       formData.append('play_genre', newPlaylist.play_genre);
       formData.append('play_description', newPlaylist.play_description);
-
+      // Send the new playlist data to the API
       await fetch(`${API_BASE_URL}/api/playlist/${GROUP_ID}`, {
         method: 'POST',
         body: formData,
       });
-
+      // Refresh the playlist list after creating a new playlist
       await getPlaylists();
       setShowCreateModal(false);
     } catch (err) {
@@ -60,7 +64,7 @@ const App = () => {
       setLoading(false);
     }
   };
-
+  // Function to handle editing a playlist
   const handleEditPlaylist = (playlist) => {
     setEditingPlaylist(playlist);
     setShowEditModal(true);

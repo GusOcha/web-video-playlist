@@ -10,11 +10,12 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
   });
 
   const genres = ['music', 'movie', 'education', 'others'];
-
+  // Function to handle form submission
+  // This function will be called when the user clicks the "Create" button
   const handleSubmit = async () => {
     if (formData.play_title && formData.play_description && formData.play_url && formData.play_thumbnail) {
       try {
-        await handleCreatePlaylist(formData);
+        await handleCreatePlaylist(formData);// Call the function passed from the parent component to create the playlist
         setFormData({
           play_title: '',
           play_description: '',
@@ -24,7 +25,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
         });
       } catch (error) {
         console.error('Error creating playlist:', error);
-        // You might want to show an error message to the user here
+        alert('Failed to create playlist. Please try again.');
       }
     }
   };
