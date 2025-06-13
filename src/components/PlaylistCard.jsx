@@ -68,12 +68,25 @@ const PlaylistCard = ({ playlist, darkMode, onEdit, onDelete, loading }) => {
         </div>
       </div>
 
-      <div className="p-4">
-        <h3 className={`font-semibold text-lg ${darkMode ? 'text-white' : 'text-gray-900'} line-clamp-2 mb-2`}>
-          {playlist.play_name || playlist.play_title}
-        </h3>
-        <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} line-clamp-2 mb-3`}>
-          {playlist.play_description || ''}
+      <div className="p-4 group/playlist">
+  <h3
+    className={`
+      font-semibold text-lg ${darkMode ? 'text-white' : 'text-gray-900'}
+      line-clamp-2 mb-2 transition-all duration-200
+      group-hover/playlist:line-clamp-none group-hover/playlist:bg-purple-100/30
+      ${darkMode ? 'group-hover/playlist:bg-gray-700/60' : ''}
+      rounded cursor-pointer
+    `}
+  >
+    {playlist.play_name || playlist.play_title}
+  </h3>
+  <p
+    className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} line-clamp-2 hover:line-clamp-none mb-3 transition-all duration-200 rounded 
+    hover:bg-purple-100/30 hover:text-purple-700 
+    ${darkMode ? 'hover:bg-gray-700/60 hover:text-white' : ''}`
+    }
+  >
+    {playlist.play_description || ''}
         </p>
         <div className="flex items-center justify-between">
           <span className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{playlist.created_at}</span>
