@@ -13,10 +13,11 @@ const Home = ({
   handleEditPlaylist,
   loading,
   error,
-  GROUP_ID
+  GROUP_ID,
+  searchQuery,
+  setSearchQuery
 }) => {
-  // State for search input and selected genre filter
-  const [searchQuery, setSearchQuery] = useState('');
+  // State for selected genre filter
   const [selectedGenre, setSelectedGenre] = useState('all');
   const genres = ['music', 'movie', 'education', 'others'];
 
@@ -44,8 +45,8 @@ const Home = ({
           </p>
         </div>
 
-        {/* Search Bar */}
-        <div className="mb-8">
+        {/* alternatif tombol search untuk di middle content, note: no needed karena udah pake yg di header aja */}
+        {/* <div className="mb-8">
           <div className="relative max-w-md mx-auto">
             <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} />
             <input
@@ -56,7 +57,25 @@ const Home = ({
               className={`w-full pl-10 pr-4 py-3 rounded-lg ${darkMode ? 'bg-gray-800/50 text-white border-gray-600' : 'bg-white/50 text-gray-900 border-gray-300'} border backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500`}
             />
           </div>
-        </div>
+        </div> */}
+
+        {/* Show active search indicator */}
+        {searchQuery && (
+          <div className="mb-6">
+            <div className={`inline-flex items-center px-3 py-2 rounded-lg ${darkMode ? 'bg-purple-900/50 text-purple-200 border border-purple-700' : 'bg-purple-50 text-purple-700 border border-purple-200'}`}>
+              <Search className="w-4 h-4 mr-2" />
+              <span className="text-sm">
+                Searching for: <strong>"{searchQuery}"</strong>
+              </span>
+              <button
+                onClick={() => setSearchQuery('')}
+                className={`ml-2 hover:bg-purple-800/30 rounded p-1 ${darkMode ? 'text-purple-300 hover:text-white' : 'text-purple-600 hover:text-purple-800'}`}
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Genre Filters */}
         <div className="flex items-center justify-between mb-8">
@@ -67,7 +86,7 @@ const Home = ({
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedGenre('all')}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${selectedGenre === 'all'
+                className={`px-3 py-1 rounded-full text-sm font-medium hover:shadow-[0_0_20px_3px_rgba(236,72,153,1)] transition-all ${selectedGenre === 'all'
                   ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
                   : darkMode
                     ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
@@ -80,7 +99,7 @@ const Home = ({
                 <button
                   key={genre}
                   onClick={() => setSelectedGenre(genre)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all capitalize ${selectedGenre === genre
+                  className={`px-3 py-1 rounded-full text-sm font-medium hover:shadow-[0_0_20px_3px_rgba(236,72,153,1)] transition-all capitalize ${selectedGenre === genre
                     ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
                     : darkMode
                       ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'

@@ -105,7 +105,7 @@ const DeletePlaylistModal = ({
                         <div className="flex space-x-3">
                             <button
                                 onClick={() => setShowModal(false)}
-                                className={`flex-1 px-4 py-2 rounded-lg ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-900'} transition-colors`}
+                                className={'flex-1 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition-colors'}
                                 disabled={submitting || loading}
                             >
                                 Cancel
@@ -114,7 +114,7 @@ const DeletePlaylistModal = ({
                             {/* MODIFIKASI: Ganti onClick dari onDelete ke handleDeleteClick */}
                             <button
                                 onClick={handleDeleteClick}
-                                className="flex-1 bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-all disabled:opacity-50"
+                                className={"flex-1 bg-red text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 hover:shadow-[0_0_20px_3px_red] transition-all disabled:opacity-50"}
                                 disabled={submitting || loading}
                             >
                                 Delete
@@ -159,10 +159,10 @@ const DeletePlaylistModal = ({
 
                                 <button
                                     onClick={onDelete}
-                                    className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50"
+                                    className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 hover:shadow-[0_0_20px_3px_red] transition-all disabled:opacity-50"
                                     disabled={submitting}
                                 >
-                                    {submitting ? 'Deleting...' : 'YES, DELETE'}
+                                    {submitting ? 'Deleting...' : 'Delete'}
                                 </button>
                             </div>
                         </div>

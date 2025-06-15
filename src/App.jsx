@@ -13,6 +13,9 @@ const App = () => {
   const [playlists, setPlaylists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  // Add search state at App level
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -76,6 +79,8 @@ const App = () => {
         setShowCreateModal={setShowCreateModal}
         loading={loading}
         GROUP_ID={GROUP_ID}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
       <Home
@@ -88,6 +93,8 @@ const App = () => {
           setDeletingPlaylist(playlist);
           setShowDeleteModal(true);
         }}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
       {showCreateModal && (

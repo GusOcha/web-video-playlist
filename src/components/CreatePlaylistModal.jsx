@@ -181,7 +181,7 @@ const CreatePlaylistModal = ({ showModal, setShowModal, handleCreatePlaylist, da
                   type="button"
                   onClick={handleSubmit}
                   disabled={isLoading || !formData.play_title || !formData.play_description || !formData.play_url || !formData.play_thumbnail}
-                  className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 hover:shadow-[0_0_20px_3px_rgba(236,72,153,1)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   {isLoading ? (
                     <>

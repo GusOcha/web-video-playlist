@@ -110,6 +110,7 @@ const EditPlaylistModal = ({
                             </label>
                             <input
                                 type="text"
+                                placeholder="Enter playlist title here..."
                                 name="play_title"
                                 value={formData.play_title}
                                 onChange={handleChange}
@@ -122,6 +123,8 @@ const EditPlaylistModal = ({
                                 Description*
                             </label>
                             <textarea
+                                type="text"
+                                placeholder="Enter playlist description here..."
                                 name="play_description"
                                 value={formData.play_description}
                                 onChange={handleChange}
@@ -135,6 +138,7 @@ const EditPlaylistModal = ({
                             </label>
                             <input
                                 type="url"
+                                placeholder="https://youtube.com/playlist?list=..."
                                 name="play_url"
                                 value={formData.play_url}
                                 onChange={handleChange}
@@ -148,6 +152,7 @@ const EditPlaylistModal = ({
                             </label>
                             <input
                                 type="url"
+                                placeholder="https://example.com/thumbnail.jpg"
                                 name="play_thumbnail"
                                 value={formData.play_thumbnail}
                                 onChange={handleChange}
@@ -183,7 +188,7 @@ const EditPlaylistModal = ({
                             </button>
                             <button
                                 type="submit"
-                                className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-all"
+                                className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 hover:shadow-[0_0_20px_3px_rgba(236,72,153,1)] transition-all"
                                 disabled={submitting}
                             >
                                 {submitting ? 'Updating...' : 'Update'}
@@ -204,10 +209,10 @@ const EditPlaylistModal = ({
                                 </svg>
                             </div>
                             <h3 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
-                                Konfirmasi Update
+                                Update Confirmation
                             </h3>
                             <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-6`}>
-                                Apakah Anda yakin ingin mengupdate playlist <span className="font-semibold">"{formData.play_title}"</span>?
+                                Are you sure you want to update playlist <span className="font-semibold">"{formData.play_title}"</span>?
                             </p>
                             <div className="flex space-x-3">
                                 <button
@@ -215,14 +220,14 @@ const EditPlaylistModal = ({
                                     className={`flex-1 px-4 py-2 rounded-lg ${darkMode ? 'bg-gray-700/50 text-white hover:bg-gray-600/50' : 'bg-gray-200/50 text-gray-900 hover:bg-gray-300/50'} transition-colors`}
                                     disabled={submitting}
                                 >
-                                    Batal
+                                    Cancel
                                 </button>
                                 <button
                                     onClick={confirmUpdate}
-                                    className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 transition-all"
+                                    className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-medium hover:from-purple-600 hover:to-pink-600 hover:shadow-[0_0_20px_3px_rgba(236,72,153,1)] transition-all"
                                     disabled={submitting}
                                 >
-                                    {submitting ? 'Updating...' : 'Ya, Update'}
+                                    {submitting ? 'Updating...' : 'Update'}
                                 </button>
                             </div>
                         </div>

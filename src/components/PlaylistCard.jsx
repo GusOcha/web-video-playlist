@@ -5,7 +5,7 @@ const PlaylistCard = ({ playlist, darkMode, onEdit, onDelete, loading }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className={`relative group w-full ${darkMode ? 'bg-gray-800/30' : 'bg-white/30'} backdrop-blur-md rounded-xl border ${darkMode ? 'border-gray-700/50' : 'border-gray-200/50'} overflow-hidden hover:scale-105 transition-all duration-300`}>
+    <div className={'relative group w-full bg-gray-800/30 backdrop-blur-md rounded-xl border border-gray-700/50 overflow-hidden hover:scale-105 hover:shadow-[0_0_20px_3px_rgba(236,72,153,1)] transition-all duration-300'}>
       <div className="relative">
         <img
           src={playlist.play_thumbnail}
